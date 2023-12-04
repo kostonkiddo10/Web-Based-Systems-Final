@@ -11,6 +11,51 @@ class TransactionsModel {
                  'root', 'root');
         }
     }
+
+    public function getTransactions() {
+        try {
+            $query = $this->db->prepare('SELECT * FROM Transactions ORDER BY transaction_id');
+
+            $query->execute();
+
+            $this->transactions = $query->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            var_dump($e->errorInfo);
+        }
+    }
+
+    public function getTransactionById($id) {
+        try {
+            $stmt = $this->db->prepare('SELECT * FROM Transactions where transaction_id=:id');
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->fetch(PDO::FETCH_ASSOC);
+        } catch(PDOException $ex) {
+            var_dump($ex->getMessage());
+        }
+    }
+
+    public function getTransactionByItemId($id) {
+        try {
+            $stmt = $this->db->prepare('SELECT * FROM Transactions where fk_item_id=:id');
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->fetch(PDO::FETCH_ASSOC);
+        } catch(PDOException $ex) {
+            var_dump($ex->getMessage());
+        }
+    }
+
+    public function getTransactionByBorrowerId($id) {
+        try {
+            $stmt = $this->db->prepare('SELECT * FROM Transactions where fk_borrower_id=:id');
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->fetch(PDO::FETCH_ASSOC);
+        } catch(PDOException $ex) {
+            var_dump($ex->getMessage());
+        }
+    }
 }
 
 ?>
