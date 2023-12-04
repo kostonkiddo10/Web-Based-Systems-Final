@@ -15,7 +15,7 @@ if(isset($_GET["itemId"])) {
     $owner = $member_model->getMember($item["fk_owner_id"]);
 
     if(!is_null($item["img_path"])) {
-        $image = '<img class="item-image" src="' . $item["img_path"] . '" />';
+        $image = '<img class="item-image" src="../images/' . $item["img_path"] . '" />';
     }
 
     if($item["isAvailable"] == 0) {

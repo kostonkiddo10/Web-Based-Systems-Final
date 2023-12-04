@@ -1,6 +1,7 @@
 <html>
     <head>
         <link rel="stylesheet" href="../styles/global.css">
+        <link rel="stylesheet" href="../styles/item_details_style.css">
     </head>
     <body>
         <h2><?= $item["itemName"]; ?></h2>
