@@ -37,7 +37,7 @@ class MembersModel {
 
     public function validate_login($email, $password) {
         try {
-            $stmtLogin = $this->db->prepare('SELECT * FROM Members WHERE email=:email and password=SHA2(:password, 224)');
+            $stmtLogin = $this->db->prepare('SELECT * FROM Members WHERE email=:email and passwrd=SHA2(:password, 224)');
             $stmtLogin->bindParam(':email', $email, PDO::PARAM_STR);
             $stmtLogin->bindParam(':password', $password, PDO::PARAM_STR);
             $stmtLogin->execute();
