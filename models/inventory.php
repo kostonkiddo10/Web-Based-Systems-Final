@@ -23,6 +23,17 @@ class InventoryModel {
             var_dump($e->errorInfo);
         }
     }
+
+    public function getItem($id) {
+        try {
+            $stmt = $this->db->prepare('SELECT * FROM Inventory where item_id=:id');
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->fetch(PDO::FETCH_ASSOC);
+        } catch(PDOException $ex) {
+            var_dump($ex->getMessage());
+        }
+    }
 }
 
 ?>
