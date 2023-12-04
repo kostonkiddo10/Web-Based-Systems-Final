@@ -1,0 +1,29 @@
+html {
+    color: antiquewhite;
+}
+
+body {
+    background-color: darkslategray;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+table {
+    color: antiquewhite;
+    border: 1px solid;
+    width: 100%;
+}
+
+a {
+    font-weight: bold;
+    text-decoration: none;
+}
+
+a:link {
+    color: bisque;
+}
+
+a:visited {
+    color: burlywood;
+}

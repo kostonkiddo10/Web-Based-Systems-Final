@@ -1,4 +1,7 @@
 <html>
+    <head>
+        <link rel="stylesheet" href="../styles/global.css">
+    </head>
     <body>
     <table>
         <tr class="column-labels">
