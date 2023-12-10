@@ -21,6 +21,6 @@
 
         <p><?= $message; ?></p>
 
-        <!-- <a href="./register_member.php">Not a member? Register now!</a> -->
+        <a href="./register_member.php">Not a member? Register now!</a>
     </body>
 </html>

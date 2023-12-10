@@ -35,6 +35,26 @@ class MembersModel {
         }
     }
 
+    public function addMember($name, $email, $passwrd) {
+        try {
+            $this->db->beginTransaction();
+            $stmtMember = $this->db->prepare("INSERT INTO Members(name,email,passwrd) 
+                            VALUES(:name,:email,SHA2(:passwrd, 224))");
+        
+
+            $stmtMember->execute(array(':name' => $name, ':email' => $email, ':passwrd' => $passwrd));
+
+            $sid = $this->db->lastInsertId();
+
+            $this->db->commit();
+
+            return $sid;
+        } catch(PDOException $ex) {
+            var_dump($ex->getMessage());
+        }
+
+    }
+
     public function validate_login($email, $password) {
         try {
             $stmtLogin = $this->db->prepare('SELECT * FROM Members WHERE email=:email and passwrd=SHA2(:password, 224)');
