@@ -1,5 +1,6 @@
 html {
     color: antiquewhite;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 body {
@@ -35,4 +36,8 @@ a:link {
 
 a:visited {
     color: burlywood;
+}
+
+nav.navbar > a:visited {
+    color: bisque;
 }

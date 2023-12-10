@@ -1,0 +1,11 @@
+div.login-field {
+    position: relative;
+}
+
+div.login-field > label {
+    left: 5px;
+}
+
+div.login-field > input {
+    width: 35%;
+}

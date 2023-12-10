@@ -4,6 +4,12 @@
         <link rel="stylesheet" href="../styles/inventory_style.css">
     </head>
     <body>
+        <nav class="navbar">
+            <ul>
+                <li><a href="./inventory_list.php">Home</a></li>
+                <li><a href="./login.php?action=logout">Logout</a></li>
+            </ul>
+        </nav>
         <h2>Current Inventory</h2>
         <table>
             <tr class="column-labels">
