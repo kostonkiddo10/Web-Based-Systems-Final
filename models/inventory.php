@@ -107,6 +107,17 @@ class InventoryModel {
             var_dump($ex->getMessage());
         }
     }
+
+    public function deleteItem($id) {
+        try {
+            $stmt = $this->db->prepare('DELETE FROM Inventory where item_id=:id');
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->fetch(PDO::FETCH_ASSOC);
+        } catch(PDOException $ex) {
+            var_dump($ex->getMessage());
+        }
+    }
 }
 
 ?>

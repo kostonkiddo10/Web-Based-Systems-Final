@@ -5,9 +5,9 @@
     </head>
     <body>
         <nav class="navbar">
-            <ul>
-                <li><a href="./inventory_list.php">Home</a></li>
-                <li><a href="./login.php?action=logout">Logout</a></li>
+            <ul class="unorderedList">
+                <li class="listItem"><a href="./inventory_list.php">Home</a></li>
+                <li class="listItem"><a href="./login.php?action=logout">Logout</a></li>
             </ul>
         </nav>
         <h2><?= $item["itemName"]; ?></h2>
@@ -17,6 +17,7 @@
         <p>Status: <?= $item["status"]; ?></p>
         <?= $borrower_name; ?>
         <?= $owner_options ?>
+        <?= $owner_delete ?>
         <?= $borrower_options ?>
     </body>
 </html>

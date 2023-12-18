@@ -42,10 +42,11 @@ nav.navbar > a:visited {
     color: bisque;
 }
 
-nav.navbar > ul {
+ul.unorderedList {
     list-style-type: none;
 }
 
-nav.navbar > ul > li {
+li.listItem {
+    display: inline;
     margin: 25px;
 }

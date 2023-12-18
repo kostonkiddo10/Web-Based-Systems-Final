@@ -24,6 +24,14 @@ if ($_SESSION["isLoggedIn"]) {
             $image = '<img class="item-image" src="../images/' . $item["img_path"] . '" />';
         }
 
+        if($owner["member_id"] == $_SESSION["member_id"]) {
+            $owner_delete = '<form method="post"><input type="submit" name="deleteItem" value="Delete Item"></input></form>';
+            if (array_key_exists('deleteItem', $_POST)) {
+                $inventory_model->deleteItem($item["item_id"]);
+                Header('Location: ./inventory_list.php');
+            }
+        }
+
         if($item["isAvailable"] == 0) {
             $transaction = $transaction_model->getMostRecentTransactionByItemId($item["item_id"]);
 
@@ -37,7 +45,10 @@ if ($_SESSION["isLoggedIn"]) {
                     $inventory_model->returnItem($item["item_id"]);
                     Header('Location: '.$_SERVER['PHP_SELF'].'?itemId='.$item["item_id"]);
                 }
-                
+                if (array_key_exists('deleteItem', $_POST)) {
+                    $inventory_model->deleteItem($item["item_id"]);
+                    Header('Location: ./inventory_list.php');
+                }
             }
         } else {
             if (!($owner["member_id"] == $_SESSION["member_id"])) {
