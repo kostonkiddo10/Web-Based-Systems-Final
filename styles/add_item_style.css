@@ -1,0 +1,9 @@
+div.input-form {
+    display: block;
+    text-align: left;
+    margin: 5px auto 5px auto;
+}
+
+div > label.input-label {
+    display: block;
+}
