@@ -61,7 +61,7 @@ class TransactionsModel {
     public function newTransaction($itemID, $borrowerID) {
         try {
             $this->db->beginTransaction();
-            $stmtMember = $this->db->prepare("INSERT INTO Transactions(fk_borrower_id,fk_item_id) 
+            $stmtMember = $this->db->prepare("INSERT INTO Transactions(fk_item_id,fk_borrower_id) 
                             VALUES(:itemID,:borrowerID)");
         
 
