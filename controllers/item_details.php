@@ -24,14 +24,19 @@ if ($_SESSION["isLoggedIn"]) {
 
         if($item["isAvailable"] == 0) {
             $transaction_model = new TransactionsModel();
-            $transaction = $transaction_model->getTransactionByItemId($item["item_id"]);
+            $transaction = $transaction_model->getMostRecentTransactionByItemId($item["item_id"]);
 
             $borrower = $member_model->getMember($transaction["fk_borrower_id"]);
 
             $borrower_name = '<p>Current Borrower\'s Name: ' . $borrower["name"] . "</p>";
 
             if($owner["member_id"] == $_SESSION["member_id"]) {
-                $owner_options = "<button>Mark As Returned</button>";
+                $owner_options = '<form method="post"><input type="submit" name="itemReturned" value="Mark As Returned"></input></form>';
+                if (array_key_exists('itemReturned', $_POST)) {
+                    $inventory_model = new InventoryModel();
+                    $inventory_model->returnItem($item["item_id"]);
+                }
+                
             }
         }
     } else {

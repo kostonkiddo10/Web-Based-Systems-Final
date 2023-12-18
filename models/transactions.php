@@ -35,9 +35,10 @@ class TransactionsModel {
         }
     }
 
-    public function getTransactionByItemId($id) {
+    public function getMostRecentTransactionByItemId($id) {
         try {
-            $stmt = $this->db->prepare('SELECT * FROM Transactions where fk_item_id=:id');
+            # Order by descending transaction id so that it always returns the most recent transaction
+            $stmt = $this->db->prepare('SELECT * FROM Transactions where fk_item_id=:id ORDER BY transaction_id DESC');
             $stmt->bindParam(':id', $id, PDO::PARAM_INT);
             $stmt->execute();
             return $stmt->fetch(PDO::FETCH_ASSOC);

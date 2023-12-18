@@ -34,6 +34,14 @@ class InventoryModel {
             var_dump($ex->getMessage());
         }
     }
+
+    public function returnItem($id) {
+        try {
+            echo 'button pressed';
+        } catch(PDOException $ex) {
+            var_dump($ex->getMessage());
+        }
+    }
 }
 
 ?>
