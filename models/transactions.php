@@ -57,6 +57,25 @@ class TransactionsModel {
             var_dump($ex->getMessage());
         }
     }
+
+    public function newTransaction($itemID, $borrowerID) {
+        try {
+            $this->db->beginTransaction();
+            $stmtMember = $this->db->prepare("INSERT INTO Transactions(fk_borrower_id,fk_item_id) 
+                            VALUES(:itemID,:borrowerID)");
+        
+
+            $stmtMember->execute(array(':itemID' => $itemID, ':borrowerID' => $borrowerID));
+
+            $sid = $this->db->lastInsertId();
+
+            $this->db->commit();
+
+            return $sid;
+        } catch(PDOException $ex) {
+            var_dump($ex->getMessage());
+        }
+    }
 }
 
 ?>

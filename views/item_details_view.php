@@ -17,5 +17,6 @@
         <p>Status: <?= $item["status"]; ?></p>
         <?= $borrower_name; ?>
         <?= $owner_options ?>
+        <?= $borrower_options ?>
     </body>
 </html>
