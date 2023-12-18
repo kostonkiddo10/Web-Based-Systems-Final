@@ -73,6 +73,19 @@ class InventoryModel {
         }
     }
 
+    public function uploadPicture($id, $img_path) {
+        try {
+            $this->db->beginTransaction();
+            $stmt = $this->db->prepare('UPDATE Inventory SET img_path = :img_path where item_id=:id');
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+            $stmt->bindParam(':img_path', $img_path, PDO::PARAM_STR);
+            $stmt->execute();
+            return $stmt->fetch(PDO::FETCH_ASSOC);
+        } catch(PDOException $ex) {
+            var_dump($ex->getMessage());
+        }
+    }
+
     public function borrowItem($id) {
         try {
             $stmt = $this->db->prepare('UPDATE Inventory SET isAvailable = 0, status = "BORROWED" where item_id=:id');

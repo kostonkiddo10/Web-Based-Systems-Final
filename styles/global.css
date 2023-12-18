@@ -41,3 +41,11 @@ a:visited {
 nav.navbar > a:visited {
     color: bisque;
 }
+
+nav.navbar > ul {
+    list-style-type: none;
+}
+
+nav.navbar > ul > li {
+    margin: 25px;
+}
