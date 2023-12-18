@@ -62,9 +62,9 @@ class MembersModel {
             $stmtLogin->bindParam(':password', $password, PDO::PARAM_STR);
             $stmtLogin->execute();
 
-            $result = $stmtLogin->fetchAll(PDO::FETCH_ASSOC);
+            $result = $stmtLogin->fetch(PDO::FETCH_ASSOC);
 
-            return count($result) > 0;
+            return $result;
         } catch(PDOException $ex) {
             var_dump($ex->getMessage());
         }

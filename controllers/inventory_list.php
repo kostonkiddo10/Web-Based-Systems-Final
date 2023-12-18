@@ -1,11 +1,17 @@
 <?php
 require_once '../models/inventory.php';
 
-$model = new InventoryModel();
+session_start();
 
-$model->getItems();
+if ($_SESSION["isLoggedIn"]) {
+    $model = new InventoryModel();
 
-$items = $model->items;
+    $model->getItems();
+
+    $items = $model->items;
+} else {
+    header ('Location: login.php');
+}
 
 include_once '../views/inventory_view.php';
 ?>

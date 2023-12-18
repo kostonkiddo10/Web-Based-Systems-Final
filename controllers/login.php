@@ -1,6 +1,8 @@
 <?php
 require_once '../models/members.php';
 
+session_start();
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $getvars = $_GET;
 
@@ -11,9 +13,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         echo '<p>' . $validLogin . '</p>';
 
         if ($validLogin) {
-            header ('Location: inventory_list.php');
+            header ('Location: inventory_list.php');           
+            $_SESSION["isLoggedIn"] = true;
+            $_SESSION["member_id"] = $validLogin["member_id"];
         } else {
             $message = "Entered email and/or password is invalid";
+        }
+    }
+} elseif ($_SERVER['REQUEST_METHOD'] === 'GET') {
+    if (isset($_GET["action"]) && $_GET["action"] == 'logout') {
+        $isUnset = session_unset();
+        $isDestroyed = session_destroy();
+
+        if (!($isUnset && $isDestroyed)) {
+            echo 'There was an error logging you out!';
         }
     }
 }

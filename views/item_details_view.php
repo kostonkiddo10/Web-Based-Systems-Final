@@ -16,5 +16,6 @@
         <p>Owner: <?= $owner["name"]; ?></p>
         <p>Status: <?= $item["status"]; ?></p>
         <?= $borrower_name; ?>
+        <?= $owner_options ?>
     </body>
 </html>
