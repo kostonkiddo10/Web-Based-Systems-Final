@@ -23,5 +23,6 @@
                 }
             ?>
         </table>
+        <a href="./add_item.php">Add an item</a>
     </body>
 </html>

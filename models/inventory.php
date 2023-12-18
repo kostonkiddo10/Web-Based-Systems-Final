@@ -35,6 +35,44 @@ class InventoryModel {
         }
     }
 
+    public function addItem($item_name, $owner_id, $img_path = "") {
+        if (strlen($img_path) > 0) {
+            try {
+                $this->db->beginTransaction();
+                $stmtMember = $this->db->prepare("INSERT INTO Inventory(itemName,fk_owner_id,img_path) 
+                                VALUES(:item_name,:fk_owner_id,:img_path)");
+            
+    
+                $stmtMember->execute(array(':item_name' => $item_name, ':fk_owner_id' => $owner_id, ':img_path' => $img_path));
+    
+                $sid = $this->db->lastInsertId();
+    
+                $this->db->commit();
+    
+                return $sid;
+            } catch(PDOException $ex) {
+                var_dump($ex->getMessage());
+            }
+        } else {
+            try {
+                $this->db->beginTransaction();
+                $stmtMember = $this->db->prepare("INSERT INTO Inventory(itemName,fk_owner_id) 
+                                VALUES(:item_name,:fk_owner_id)");
+            
+    
+                $stmtMember->execute(array(':item_name' => $item_name, ':fk_owner_id' => $owner_id));
+    
+                $sid = $this->db->lastInsertId();
+    
+                $this->db->commit();
+    
+                return $sid;
+            } catch(PDOException $ex) {
+                var_dump($ex->getMessage());
+            }
+        }
+    }
+
     public function borrowItem($id) {
         try {
             $stmt = $this->db->prepare('UPDATE Inventory SET isAvailable = 0, status = "BORROWED" where item_id=:id');
